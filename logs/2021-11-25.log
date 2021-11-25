@@ -1,0 +1,50 @@
+⇨ http server started on [::]:1323
+{"time":"2021-11-25T19:36:26.8550783+07:00","id":"","remote_ip":"::1","host":"localhost:1323","method":"GET","uri":"/","status":200, "latency":0,"latency_human":"0s","bytes_in":0,"bytes_out":13,"real_ip:""}
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+[2021-11-25T20:19:08+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "82800", user_agent: "PostmanRuntime/7.28.4", error:"" }
+⇨ http server started on [::]:1323
+[2021-11-25T20:19:50+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "0", user_agent: "PostmanRuntime/7.28.4", error: "" }
+[2021-11-25T20:19:50+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "0", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+⇨ http server started on [::]:1323
+[2021-11-25T20:35:34+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "0", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+{"-":"=>",time":"2021-11-25T20:43:43.3830922+07:00","prefix":"-","file":"main.go","line":"52","message":"------ data request ---- : &{tessssssssss 333333}"}
+[2021-11-25T20:43:43+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "220900", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+{"time":"2021-11-25T20:44:33.7824342+07:00","level":"-","prefix":"-","file":"main.go","line":"52","message":"------ data request ---- : &{tessssssssss 333333}"}
+[2021-11-25T20:44:33+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "656700", user_agent: "PostmanRuntime/7.28.4", error: "" }
+{"time":"2021-11-25T20:44:50.5131736+07:00","level":"-","prefix":"-","file":"main.go","line":"52","message":"------ data request ---- : &{tessssssssss 333333}"}
+[2021-11-25T20:44:50+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "422400", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+[2021-11-25T20:47:27+07:00] :  ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:47:27+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "423800", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+[2021-11-25T20:48:03+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:48:03+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "295200", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+[2021-11-25T20:51:13+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:51:13+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+{"time":"2021-11-25T20:51:13.5123474+07:00","level":"-","prefix":"echo","file":"recover.go","line":"92","message":"[PANIC RECOVER] ------ data request ---- : &{tessssssssss 333333} goroutine 20 [running]:\ngithub.com/labstack/echo/v4/middleware.RecoverWithConfig.func1.1.1()\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/middleware/recover.go:77 +0x10d\npanic({0xdef0c0, 0xc000194110})\n\tC:/Program Files/Go/src/runtime/panic.go:1038 +0x215\ngithub.com/labstack/gommon/log.(*Logger).Panicf(0xc000124090, {0xe4cd87, 0x1d}, {0xc00008f610, 0x1, 0x1})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/gommon@v0.3.1/log/log.go:223 +0x79\ngithub.com/labstack/gommon/log.Panicf(...)\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/gommon@v0.3.1/log/log.go:344\nmain.main.func2({0xeb68f0, 0xc0001a0000})\n\tE:/skeleton-api/echo-go/main.go:53 +0x1f7\ngithub.com/labstack/echo/v4.(*Echo).add.func1({0xeb68f0, 0xc0001a0000})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/echo.go:552 +0x51\ngithub.com/labstack/echo/v4/middleware.CORSWithConfig.func1.1({0xeb68f0, 0xc0001a0000})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/middleware/cors.go:118 +0x35e\ngithub.com/labstack/echo/v4/middleware.RecoverWithConfig.func1.1({0xeb68f0, 0xc0001a0000})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/middleware/recover.go:98 +0xfc\ngithub.com/labstack/echo/v4/middleware.LoggerWithConfig.func2.1({0xeb68f0, 0xc0001a0000})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/middleware/logger.go:117 +0xe2\ngithub.com/labstack/echo/v4.(*Echo).ServeHTTP(0xc0000e66c0, {0xeae358, 0xc000198000}, 0xc00005a000)\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/echo.go:662 +0x3bc\nnet/http.serverHandler.ServeHTTP({0xead750}, {0xeae358, 0xc000198000}, 0xc00005a000)\n\tC:/Program Files/Go/src/net/http/server.go:2878 +0x43b\nnet/http.(*conn).serve(0xc000095680, {0xeaf5e0, 0xc00013c120})\n\tC:/Program Files/Go/src/net/http/server.go:1929 +0xb08\ncreated by net/http.(*Server).Serve\n\tC:/Program Files/Go/src/net/http/server.go:3033 +0x4e8\n\ngoroutine 1 [IO wait]:\ninternal/poll.runtime_pollWait(0x293bb41d798, 0x72)\n\tC:/Program Files/Go/src/runtime/netpoll.go:229 +0x89\ninternal/poll.(*pollDesc).wait(0x200000003, 0xb7cfb4, 0x0)\n\tC:/Program Files/Go/src/internal/poll/fd_poll_runtime.go:84 +0x32\ninternal/poll.execIO(0xc00013e018, 0xc0000cd9e0)\n\tC:/Program Files/Go/src/internal/poll/fd_windows.go:175 +0xe5\ninternal/poll.(*FD).acceptOne(0xc00013e000, 0x16c, {0xc0001421e0, 0x0, 0x0}, 0x0)\n\tC:/Program Files/Go/src/internal/poll/fd_windows.go:810 +0x6d\ninternal/poll.(*FD).Accept(0xc00013e000, 0xc0000cdbb8)\n\tC:/Program Files/Go/src/internal/poll/fd_windows.go:844 +0x1d6\nnet.(*netFD).accept(0xc00013e000)\n\tC:/Program Files/Go/src/net/fd_windows.go:139 +0x65\nnet.(*TCPListener).accept(0xc00009c648)\n\tC:/Program Files/Go/src/net/tcpsock_posix.go:140 +0x28\nnet.(*TCPListener).AcceptTCP(0xc00009c648)\n\tC:/Program Files/Go/src/net/tcpsock.go:249 +0x3d\ngithub.com/labstack/echo/v4.tcpKeepAliveListener.Accept({0xc0000cdcb0})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/echo.go:971 +0x1d\nnet/http.(*Server).Serve(0xc00013a000, {0xeae178, 0xc0000ce060})\n\tC:/Program Files/Go/src/net/http/server.go:3001 +0x394\ngithub.com/labstack/echo/v4.(*Echo).Start(0xc0000e66c0, {0xe433bd, 0x5})\n\tC:/Users/robby parlan/go/pkg/mod/github.com/labstack/echo/v4@v4.6.1/echo.go:679 +0xc7\nmain.main()\n\tE:/skeleton-api/echo-go/main.go:56 +0x5b1\n\ngoroutine 34 [IO wait]:\ninternal/poll.runtime_pollWait(0x293bb41d5c8, 0x72)\n\tC:/Program Files/Go/src/runtime/netpoll.go:229 +0x89\ninternal/poll.(*pollDesc).wait(0x0, 0x0, 0x0)\n\tC:/Program Files/Go/src/internal/poll/fd_poll_runtime.go:84 +0x32\ninternal/poll.execIO(0xc00013e518, 0xe5f558)\n\tC:/Program Files/Go/src/internal/poll/fd_windows.go:175 +0xe5\ninternal/poll.(*FD).Read(0xc00013e500, {0xc0000220a1, 0x1, 0x1})\n\tC:/Program Files/Go/src/internal/poll/fd_windows.go:441 +0x25f\nnet.(*netFD).Read(0xc00013e500, {0xc0000220a1, 0x0, 0x0})\n\tC:/Program Files/Go/src/net/fd_posix.go:56 +0x29\nnet.(*conn).Read(0xc0000ce078, {0xc0000220a1, 0x0, 0x0})\n\tC:/Program Files/Go/src/net/net.go:183 +0x45\nnet/http.(*connReader).backgroundRead(0xc0000220\n"}
+[2021-11-25T20:51:13+07:00] : 500 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "4434200", user_agent: "PostmanRuntime/7.28.4", error: "" }
+⇨ http server started on [::]:1323
+[2021-11-25T20:52:19+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:52:19+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+⇨ http server started on [::]:1323
+[2021-11-25T20:53:07+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:53:07+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "655100", user_agent: "PostmanRuntime/7.28.4", error: "" }
+[2021-11-25T20:53:34+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:53:34+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "0", user_agent: "PostmanRuntime/7.28.4", error: "" }
+[2021-11-25T20:53:43+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:53:43+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "588500", user_agent: "PostmanRuntime/7.28.4", error: "" }
+[2021-11-25T20:54:41+07:00] : [INFO] ------ data request ---- : &{tessssssssss 333333}
+[2021-11-25T20:54:41+07:00] : 200 { method: "POST", uri: "/test", request_id: "", remote_ip: "::1" } { host: "localhost:1323", x-real-ip: "", latency: "0", user_agent: "PostmanRuntime/7.28.4", error: "" }

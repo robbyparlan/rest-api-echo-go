@@ -1,4 +1,4 @@
-module echo-go
+module rest-api-echo-go
 
 go 1.17
 

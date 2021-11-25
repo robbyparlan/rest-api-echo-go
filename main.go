@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	cfg "echo-go/src/config"
-	"github.com/labstack/gommon/log"
+	cfg "rest-api-echo-go/src/config"
+
+	router "rest-api-echo-go/src/routers"
 )
 
 func main() {
@@ -25,31 +26,16 @@ func main() {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}
+	
+	api := e.Group("/api")
 
-	e.Use(middleware.CORSWithConfig(CORSConfig))
+	api.Use(middleware.CORSWithConfig(CORSConfig))
 
+	router.TestRouter(api)
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+		return c.String(http.StatusOK, "Bismillah, Restful API Golang")
 	})
 
-	type ReqParam struct {
-		Name string `json:"name"`
-		Age string `json:"age"`
-	}
-
-	type H map[string]interface{}
-
-	e.POST("/test", func(ctx echo.Context) error {
-		reqBody := &ReqParam{}
-		if err := ctx.Bind(&reqBody); err != nil {
-			return ctx.JSON(http.StatusUnauthorized, H{
-				"status": 401,
-				"message": "Unauthorized. Invalid Parameter.",
-			})
-		}
-		log.Printf("------ data request ---- : %v", reqBody)
-		return ctx.JSON(http.StatusOK, reqBody)
-	})
 	e.Logger.Fatal(e.Start(":1323"))
 }

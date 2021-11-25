@@ -9,6 +9,8 @@ import (
 	router "rest-api-echo-go/src/routers"
 )
 
+const secret = "5ae6ea9d886dfb01ca99b8aae3db70d"
+
 func main() {
 	e := echo.New()
 	e.HideBanner = true
@@ -27,10 +29,18 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}
 	
+	auth := e.Group("/auth")
 	api := e.Group("/api")
 
+	auth.Use(middleware.CORSWithConfig(CORSConfig))
 	api.Use(middleware.CORSWithConfig(CORSConfig))
 
+	api.Use(middleware.JWTWithConfig(middleware.JWTConfig{
+		SigningKey:    []byte(secret),
+		SigningMethod: "HS256",
+	}))
+
+	router.AuthRouter(auth)
 	router.TestRouter(api)
 
 	e.GET("/", func(c echo.Context) error {

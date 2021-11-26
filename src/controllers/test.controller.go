@@ -12,8 +12,8 @@ import (
 )
 
 type ReqParam struct {
-	Name string `json:"name"`
-	Age string `json:"age"`
+	Name string `json:"name" validate:"required"`
+	Age string `json:"age" validate:"required"`
 }
 
 func Test() echo.HandlerFunc {
@@ -25,6 +25,15 @@ func Test() echo.HandlerFunc {
 				"message": "Unauthorized. Invalid Parameter.",
 			})
 		}
+
+		//validation request
+		if err := ctx.Validate(reqBody); err != nil {
+			return ctx.JSON(http.StatusBadRequest, util.CustomResponses{
+				"status":  400,
+				"message": err.Error(),
+			})
+		}
+
 		log.Printf("------ data request ---- : %v", reqBody)
 		return ctx.JSON(http.StatusOK, reqBody)
 	}

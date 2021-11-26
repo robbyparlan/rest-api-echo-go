@@ -7,9 +7,44 @@ import (
 	cfg "rest-api-echo-go/src/config"
 
 	router "rest-api-echo-go/src/routers"
+
+	"github.com/go-playground/validator/v10"
+	"github.com/go-playground/locales/id"
+	id_translations "github.com/go-playground/validator/v10/translations/id"
+	translator "github.com/go-playground/universal-translator"
+	"errors"
+	"fmt"
 )
 
 const secret = "5ae6ea9d886dfb01ca99b8aae3db70d"
+
+type CustomValidator struct {
+	validator *validator.Validate
+}
+
+/*
+	@author Roby Parlan
+	Function custom validation request body in bahasa
+*/
+func (cv *CustomValidator) Validate(i interface{}) error {
+	id := id.New()
+	uni := translator.New(id, id)
+
+	// translate into bahasa
+	trans, _ := uni.GetTranslator("id")
+	id_translations.RegisterDefaultTranslations(cv.validator, trans)
+	err := cv.validator.Struct(i)
+
+	if err != nil {
+		object, _ := err.(validator.ValidationErrors)
+
+		for _, key := range object {
+			return errors.New(key.Translate(trans))
+		}
+	}
+
+	return nil
+}
 
 func main() {
 	e := echo.New()
@@ -20,6 +55,30 @@ func main() {
 		` { host: "${host}", x-real-ip: "${header:X-Real-IP}", latency: "${latency}", user_agent: "${user_agent}", error: "${error}" }` + "\n",
 		Output: cfg.LogWriteFile,
 	}))	
+
+	e.Validator = &CustomValidator{validator: validator.New()}
+
+	e.HTTPErrorHandler = func(err error, c echo.Context) {
+    report, ok := err.(*echo.HTTPError)
+    if !ok {
+        report = echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+    }
+
+    if castedObject, ok := err.(validator.ValidationErrors); ok {
+        for _, err := range castedObject {
+            switch err.Tag() {
+            case "required":
+                report.Message = fmt.Sprintf("%s tidak boleh kosong", 
+                    err.Field())
+            }
+
+            break
+        }
+    }
+
+    c.Logger().Error(report)
+    c.JSON(report.Code, report)
+	}
 
 	e.Use(middleware.Recover())
 

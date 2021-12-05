@@ -6,6 +6,6 @@ import (
 )
 
 func AuthRouter(auth *echo.Group) {
-	auth.OPTIONS("/access_token", ctr.GetToken())
-	auth.POST("/access_token", ctr.GetToken())
+	auth.OPTIONS("/access_token", ctr.GetTokenV1())
+	auth.POST("/access_token", ctr.GetTokenV1())
 }

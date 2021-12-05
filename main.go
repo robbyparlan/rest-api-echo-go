@@ -2,9 +2,12 @@ package main
 
 import (
 	"net/http"
+	"time"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/spf13/viper"
 	cfg "rest-api-echo-go/src/config"
+	mddl "rest-api-echo-go/src/middlewares"
 
 	router "rest-api-echo-go/src/routers"
 
@@ -15,8 +18,6 @@ import (
 	"errors"
 	"fmt"
 )
-
-const secret = "5ae6ea9d886dfb01ca99b8aae3db70d"
 
 type CustomValidator struct {
 	validator *validator.Validate
@@ -47,8 +48,11 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 func main() {
+	cfg.InitConfig()
+
 	e := echo.New()
 	e.HideBanner = true
+	e.Debug = viper.GetBool("debug")
 
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: "[${time_rfc3339}] : ${status} " + `{ method: "${method}", uri: "${uri}", request_id: "${id}", remote_ip: "${remote_ip}" }` +
@@ -90,21 +94,32 @@ func main() {
 	
 	auth := e.Group("/auth")
 	api := e.Group("/api")
+	gnl := e.Group("/api-v1")
 
 	auth.Use(middleware.CORSWithConfig(CORSConfig))
 	api.Use(middleware.CORSWithConfig(CORSConfig))
+	gnl.Use(middleware.CORSWithConfig(CORSConfig))
 
 	api.Use(middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey:    []byte(secret),
+		SigningKey:    []byte(viper.GetString("jwt_secret_key")),
 		SigningMethod: "HS256",
 	}))
 
+	gnl.Use(mddl.HandleApiAdmin)
+
 	router.AuthRouter(auth)
-	router.TestRouter(api)
+	// router.TestRouter(api)
+
+	router.TestRouter(gnl)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Bismillah, Restful API Golang")
 	})
 
-	e.Logger.Fatal(e.Start(":1323"))
+	server := &http.Server{
+		Addr:         ":" + viper.GetString("app_port"),
+		ReadTimeout:  time.Duration(viper.GetInt("app_rto")) * time.Second,
+		WriteTimeout: time.Duration(viper.GetInt("app_wto")) * time.Second,
+	}
+	e.Logger.Fatal(e.StartServer(server))
 }

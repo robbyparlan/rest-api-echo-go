@@ -11,10 +11,12 @@ import (
 	"github.com/labstack/gommon/log"
 	// "github.com/dgrijalva/jwt-go"
 	// "github.com/spf13/viper"
+
+	// "github.com/microcosm-cc/bluemonday"
 )
 
 type ReqParam struct {
-	Name string `json:"name" validate:"required"`
+	Name string `json:"name" validate:"required,checktaghtml"`
 	Age string `json:"age" validate:"required"`
 }
 

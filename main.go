@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 	"time"
+	"log"
+	"regexp"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/spf13/viper"
@@ -19,6 +21,22 @@ import (
 	"fmt"
 )
 
+
+func CheckTagHtml(fl validator.FieldLevel) bool {
+
+	tmp := `<[/]?([a-zA-Z]+).*?>`
+	r := regexp.MustCompile(tmp)
+	chk := r.MatchString(fl.Field().String())
+
+	log.Printf("data sanitize : %v \n", fl.Field().String())
+
+	if chk {
+		return false
+	}
+
+	return true
+}
+
 type CustomValidator struct {
 	validator *validator.Validate
 }
@@ -31,9 +49,12 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 	id := id.New()
 	uni := translator.New(id, id)
 
+	cv.validator.RegisterValidation("checktaghtml", CheckTagHtml)
+
 	// translate into bahasa
 	trans, _ := uni.GetTranslator("id")
 	id_translations.RegisterDefaultTranslations(cv.validator, trans)
+	
 	err := cv.validator.Struct(i)
 
 	if err != nil {

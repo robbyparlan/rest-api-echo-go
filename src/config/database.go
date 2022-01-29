@@ -47,6 +47,7 @@ func init() {
 
 	
 	if err = DB.Ping(); err != nil {
+		log.Printf("Database Not Connected!\n")
 		log.Panic(err)
 	}
 	

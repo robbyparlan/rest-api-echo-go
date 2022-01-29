@@ -6,6 +6,6 @@ import (
 )
 
 func GeneralRouter(gnl *echo.Group) {
-	gnl.OPTIONS("/test", ctr.TestConnectDatabase())
-	gnl.POST("/test", ctr.TestConnectDatabase())
+	gnl.OPTIONS("/testing-connect-db", ctr.TestConnectDatabase())
+	gnl.POST("/testing-connect-db", ctr.TestConnectDatabase())
 }

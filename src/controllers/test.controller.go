@@ -16,7 +16,7 @@ import (
 )
 
 type ReqParam struct {
-	Name string `json:"name" validate:"required,checktaghtml"`
+	Name string `json:"name" validate:"required"`
 	Age string `json:"age" validate:"required"`
 }
 

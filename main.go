@@ -3,8 +3,6 @@ package main
 import (
 	"net/http"
 	"time"
-	"log"
-	"regexp"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/spf13/viper"
@@ -21,22 +19,6 @@ import (
 	"fmt"
 )
 
-
-func CheckTagHtml(fl validator.FieldLevel) bool {
-
-	tmp := `<[/]?([a-zA-Z]+).*?>`
-	r := regexp.MustCompile(tmp)
-	chk := r.MatchString(fl.Field().String())
-
-	log.Printf("data sanitize : %v \n", fl.Field().String())
-
-	if chk {
-		return false
-	}
-
-	return true
-}
-
 type CustomValidator struct {
 	validator *validator.Validate
 }
@@ -48,8 +30,6 @@ type CustomValidator struct {
 func (cv *CustomValidator) Validate(i interface{}) error {
 	id := id.New()
 	uni := translator.New(id, id)
-
-	cv.validator.RegisterValidation("checktaghtml", CheckTagHtml)
 
 	// translate into bahasa
 	trans, _ := uni.GetTranslator("id")
@@ -115,7 +95,7 @@ func main() {
 	
 	auth := e.Group("/auth")
 	api := e.Group("/api")
-	gnl := e.Group("/api-v1")
+	gnl := e.Group("/apiv1")
 
 	auth.Use(middleware.CORSWithConfig(CORSConfig))
 	api.Use(middleware.CORSWithConfig(CORSConfig))
@@ -129,9 +109,9 @@ func main() {
 	gnl.Use(mddl.HandleApiAdmin)
 
 	router.AuthRouter(auth)
-	// router.TestRouter(api)
+	router.TestRouter(api)
 
-	router.TestRouter(gnl)
+	router.GeneralRouter(gnl)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Bismillah, Restful API Golang")
